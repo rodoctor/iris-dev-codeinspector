@@ -3,7 +3,7 @@
   <Document name="codeinspector.ZPM">
     <Module>
       <Name>codeinspector</Name>
-      <Version>0.0.1</Version>
+      <Version>0.0.2</Version>
       <Description>CodeInspector</Description>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
