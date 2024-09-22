@@ -1,10 +1,10 @@
 Class codeInspector.core.Base
 {
 
-ClassMethod IgnoreClass(pClassName, IgnoredPackages) As %Boolean [ Internal ]
+ClassMethod IgnoreClass(pClassName, pIgnoredPackageList) As %Boolean [ Internal ]
 {
 	Set return = 0
-	Set list = $LISTFROMSTRING(IgnoredPackages)
+	Set list = $LISTFROMSTRING(pIgnoredPackageList)
 
 	For index=1:1:$LISTLENGTH(list)
 	{
@@ -62,10 +62,52 @@ ClassMethod DisplayErrorsInOutput(pArrayErrors As %ArrayOfObjectsWithClassName) 
 			Write ("ERROR: ("_indexArray_")"),!
 			For index=1:1:errorList.Count()
 			{
-				Write errorList.GetAt(index),!
+				Set indexProps = ""
+				Set arrayProps = errorList.GetAt(index)
+				While (arrayProps.GetNext(.indexProps) '= "")
+				{
+					Write $$$TAB_"> "_indexProps_": "_arrayProps.GetAt(indexProps),!
+				}
+				Write $$$NL
 			}
 		}
 	}
+}
+
+ClassMethod ReturnJson(pArrayErrors) As %Stream.GlobalCharacter
+{
+	Set report = {}
+	Set report.errors = []
+	
+	While (pArrayErrors.GetNext(.indexArray))
+	{
+		Set errorList = pArrayErrors.GetAt(indexArray)
+
+		If ($ISOBJECT(errorList))
+		{
+			Set error = {}.%New()
+			Set error.class = $PIECE(indexArray,"||",1)
+			Set error.method = $PIECE(indexArray,"||",2)
+			Set error.issues = []
+
+			For index=1:1:errorList.Count()
+			{
+				Set itemError = errorList.GetAt(index)
+
+				Set issue = {}.%New()
+				Set issue.code = itemError.GetAt("Code")
+				Set issue.description = itemError.GetAt("Description")
+				Set issue.type = itemError.GetAt("Type")
+				Do error.issues.%Push(issue)
+			}
+
+			Do report.errors.%Push(error)
+		}
+	}
+	Set json = ##class(%Stream.GlobalCharacter).%New()
+	Do report.%ToJSON(json)
+
+	Return json
 }
 
 }

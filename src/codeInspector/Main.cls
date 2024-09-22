@@ -9,22 +9,23 @@ Class codeInspector.Main Extends codeInspector.core.Base
 /// <params>
 /// 	<ul>
 /// 		<li><b>pPackages</b> - Comma-separated list of packages to be inspected.</li>
-/// 		<li><b>IgnoredPackages</b> - Comma-separated list of packages to be ignored during execution.</li>
-/// 	</ul>
+/// 		<li><b>pIgnoredPackages</b> - Comma-separated list of packages to be ignored during execution.</li>
+/// 		<li><b>pReturnJson</b> - A parameter that indicates whether the return value should be a structured JSON.</li>	
+/// </ul>
 /// </params>
 /// <example>
-/// Do ##class(codeInspector.Main).Execute("package.A,package.B","package.C")
+/// Do ##class(codeInspector.Main).Execute("package.A,package.B","package.C",1)
 /// </example>
-ClassMethod Execute(pPackages As %String, IgnoredPackages As %String)
+ClassMethod Execute(pPackageList As %String = "", pIgnoredPackageList As %String = "", pReturnJson As %Boolean = 0)
 {
 	Try
 	{
-		WRITE !!,"Initiating CodeInspector execution",!!
+		//WRITE !!,"Initiating CodeInspector execution",!!
 		
 		Set arrayErrors = ##class(%ArrayOfObjectsWithClassName).%New()
 		Set arrayErrors.ElementType = "%ListOfDataTypes"
 		
-		Set packageList = $LISTFROMSTRING(pPackages)
+		Set packageList = $LISTFROMSTRING(pPackageList)
 		For indexPackage=1:1:$LISTLENGTH(packageList)
 		{
 			Set packageName = $LISTGET(packageList,indexPackage)
@@ -34,7 +35,7 @@ ClassMethod Execute(pPackages As %String, IgnoredPackages As %String)
 			
 			While (class'="") 
 			{
-				If ('..IgnoreClass(class,IgnoredPackages))
+				If ('..IgnoreClass(class,pIgnoredPackageList))
 				{
 					Do ..ClassValidator(class,.arrayErrors)
 				}
@@ -42,14 +43,22 @@ ClassMethod Execute(pPackages As %String, IgnoredPackages As %String)
 				Set class = $ORDER(classList(class))
 			}
 		}
-		Do ..DisplayErrorsInOutput(arrayErrors)
+
+		If (pReturnJson)
+		{
+			Return ..ReturnJson(arrayErrors)
+		}
+		Else
+		{
+			Do ..DisplayErrorsInOutput(arrayErrors)
+		}
 	}
 	Catch(e)
 	{
 		Set Status = e.AsStatus()
 		WRITE !, $System.Status.GetErrorText(Status)
 	}
-	WRITE !!,"Execution completed",!!
+	//WRITE !!,"Execution completed",!!
 }
 
 }
