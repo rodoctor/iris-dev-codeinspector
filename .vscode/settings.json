@@ -15,7 +15,8 @@
       },
       "links": {
         "UnitTest Portal": "${serverUrl}/csp/sys/%25UnitTest.Portal.Home.cls?$NAMESPACE=IRISAPP"
-      }
+      },
+      "server": "iris"
     },
     "intersystems.testingManager.client.relativeTestRoot": "tests"
 
