@@ -53,10 +53,16 @@ USER>zpm "load /home/irisowner/dev"
 The management portal is available at: 
 [Management portal](http://localhost:9091/csp/sys/UtilHome.csp)
 
-The API is available on http://localhost:9091/codeinspector/
-
 
 ## Rest API - CodeInspector Repost
+
+### API Parameters
+
+The API is available at [http://localhost:9091/codeinspector/](http://localhost:9091/codeinspector/) and accepts the following parameters:
+
+- **namespace**: (required) This parameter is mandatory.
+- **packages**: (required) This parameter must receive the names of the packages to be analyzed. You can specify multiple package names, separated by commas.
+- **ignored**: This parameter accepts a list of package names to be ignored, also separated by commas.
 
 ### Postman export
 You can find an export of the Postman Collection for testing the available API in the `collectionPostman` folder of this project.
