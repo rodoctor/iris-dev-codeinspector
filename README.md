@@ -10,6 +10,9 @@ The **CodeInspector** program validates packages and classes based on predefined
 
 The motivation behind **CodeInspector** is to create a tool that is easy to implement, allowing teams to define their own rules and adapt the tool to their business needs. By offering flexibility and simplicity, teams can ensure code quality while addressing specific requirements within their development process.
 
+## Challenges Faced
+The Shift team is developing our own tools, as we haven't found any that fit our specific business needs. To address this demand, I created a tool that is flexible and easy to implement, allowing any team member to create new rules without complications.
+
 ## Features
 
 - Analyzes and validates packages and classes based on predefined rules.
@@ -60,19 +63,47 @@ The management portal is available at:
 
 The API is available at [http://localhost:9091/codeinspector/](http://localhost:9091/codeinspector/) and accepts the following parameters:
 
-- **namespace**: (required) This parameter is mandatory.
-- **packages**: (required) This parameter must receive the names of the packages to be analyzed. You can specify multiple package names, separated by commas.
-- **ignored**: This parameter accepts a list of package names to be ignored, also separated by commas.
+- **namespace**: *(required)* The namespace specifies the context in which the validation will be executed.
+- **packages**: *(required)* This parameter must include the names of the packages to be analyzed. Multiple package names can be provided, separated by commas.
+- **ignored**: This parameter allows you to specify a list of package names that should be excluded from the validation process. Multiple names should also be separated by commas.
 
 ### Postman export
 You can find an export of the Postman Collection for testing the available API in the `collectionPostman` folder of this project.
-Import `CodeInspector.postman_collection.json` into Postman to run tests.
+Import ![CodeInspector.postman_collection.json](collectionPostman/CodeInspector.postman_collection.json) into Postman to run tests.
 
 ![Postman Test](Postman.gif)
 
 
-## Challenges Faced
-The Shift team is developing our own tools, as we haven't found any that fit our specific business needs. To address this demand, I created a tool that is flexible and easy to implement, allowing any team member to create new rules without complications.
+## Creating New Rules
+
+```mermaid
+
+classDiagram
+  class `codeInspector.rule.rules.BaseRule` {
+    +Execute() : void
+    +IncrementStatusError() : void
+  }
+  
+  class `codeInspector.rules.[package].[className]` {
+     +Executar() : void
+  }
+
+`codeInspector.rules.[package].[className]` --|> `codeInspector.rules.BaseRule`
+```
+
+- The new rule must extend the framework.codeInspector.rules.BaseRule class.
+- The new rule should override the Execute() method.
+- The method receives three parameters:
+    - pMethodContent - Stream containing the content of the method to be validated.
+    - pIdMethod - A combination of the class name and the method name that represents the content of the stream.
+    - ByRef pArrayErrors - Holds all the statuses from previous validations. If necessary to increment, the method IncrementStatusError() should be used.
+- The IncrementStatusError method should be implemented as shown in the example below:
+
+```objectscript
+Set type = "Interdependency"
+Set errorDescription = "A call to a BusinessOperation has been found within another BusinessOperation."
+Do ..IncrementStatusError(.pArrayErrors,pIdMethod,type,pMethodContent,errorDescription)
+```
 
 ## Built with
 - WSL Ubuntu 22.04
