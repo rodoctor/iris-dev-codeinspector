@@ -4,7 +4,7 @@
     <Module>
       <Name>codeinspector</Name>
       <Version>1.0.0</Version>
-      <Description>CodeInspector - Validates packages and cl</Description>
+      <Description>CodeInspector - Validates packages and classes, returning a report with issues.</Description>
       <Keywords>code review,quality</Keywords>
       <Packaging>module</Packaging>
       <Resource Name="codeInspector.PKG"/>
