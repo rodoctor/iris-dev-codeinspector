@@ -4,9 +4,14 @@
     <Module>
       <Name>codeinspector</Name>
       <Version>0.0.5</Version>
+>>>>>>> 3dca4aa69611f9c6a002fefc37fa9866e2f0a434
       <Description>CodeInspector</Description>
       <Packaging>module</Packaging>
+      <Resource Name="codeInspector.PKG"/>
+      <Resource Name="sample.PKG"/>
       <SourcesRoot>src</SourcesRoot>
+<<<<<<< HEAD
+=======
       <Resource Name="codeinspector.PKG"/>
       <Invoke Class="%SYSTEM.OBJ" Method="LoadDir">
          <Arg>/home/irisowner/dev/src</Arg>
@@ -15,6 +20,7 @@
          <Arg>1</Arg>
       </Invoke>
       <Invoke Class="codeInspector.env.Installer" Method="Install"></Invoke>
+>>>>>>> 3dca4aa69611f9c6a002fefc37fa9866e2f0a434
     </Module>
   </Document>
 </Export>

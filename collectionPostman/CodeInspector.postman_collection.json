@@ -1,0 +1,45 @@
+{
+	"info": {
+		"_postman_id": "f90e8f18-eaa1-4658-b170-343bc86c5502",
+		"name": "CodeInspector",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5093404"
+	},
+	"item": [
+		{
+			"name": "Report",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9091/codeinspector/?namespace=IRISAPP&packages=sample",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"codeinspector",
+						""
+					],
+					"query": [
+						{
+							"key": "namespace",
+							"value": "IRISAPP"
+						},
+						{
+							"key": "packages",
+							"value": "sample"
+						},
+						{
+							"key": "ignored",
+							"value": "mypackage.xpto",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
