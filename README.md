@@ -62,6 +62,8 @@ The API is available on http://localhost:9091/codeinspector/
 You can find an export of the Postman Collection for testing the available API in the `collectionPostman` folder of this project.
 Import `CodeInspector.postman_collection.json` into Postman to run tests.
 
+![Postman Test](Postman.gif)
+
 
 ## Challenges Faced
 The Shift team is developing our own tools, as we haven't found any that fit our specific business needs. To address this demand, I created a tool that is flexible and easy to implement, allowing any team member to create new rules without complications.
