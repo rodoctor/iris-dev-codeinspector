@@ -1,4 +1,4 @@
-Class codeInspector.core.Base
+Class codeInspector.core.Base [ CompileAfter = (codeInspector.utl.XData, codeInspector.data.SQL), LegacyInstanceContext ]
 {
 
 ClassMethod IgnoreClass(pClassName, pIgnoredPackageList) As %Boolean [ Internal ]

@@ -8,6 +8,13 @@
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
       <Resource Name="codeinspector.PKG"/>
+      <Invoke Class="%SYSTEM.OBJ" Method="LoadDir">
+         <Arg>/home/irisowner/dev/src</Arg>
+         <Arg>ck</Arg>
+         <Arg>error</Arg>
+         <Arg>1</Arg>
+      </Invoke>
+      <Invoke Class="codeInspector.env.Installer" Method="Install"></Invoke>
     </Module>
   </Document>
 </Export>

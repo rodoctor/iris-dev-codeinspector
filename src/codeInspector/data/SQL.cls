@@ -1,4 +1,4 @@
-Class codeInspector.data.SQL Extends %RegisteredObject
+Class codeInspector.data.SQL
 {
 
 ClassMethod SearchMethodList(pClassName As %String) As %SQL.StatementResult [ Internal ]

@@ -1,13 +1,11 @@
-Class codeInspector.env.Installer Extends %Projection.AbstractProjection [ CompileAfter = codeInspector.env.Config ]
+Class codeInspector.env.Installer [ CompileAfter = codeInspector.env.Config, LegacyInstanceContext ]
 {
 
-ClassMethod CreateProjection(classname As %String) As %Status [ CodeMode = generator, ForceGenerate ]
+ClassMethod Install()
 {
     Try
     {
         Set namespace = $NAMESPACE
-
-        zn "%SYS"
 
         Do ##class(codeInspector.env.Config).MapCodeInspector(namespace)
         Do ##class(codeInspector.env.Config).CreateWebApplication(namespace)
@@ -21,8 +19,6 @@ ClassMethod CreateProjection(classname As %String) As %Status [ CodeMode = gener
         Write msg_$$$NL
         zn namespace
     }
-	
-	Return $$$OK
 }
 
 }

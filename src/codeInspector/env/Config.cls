@@ -1,9 +1,9 @@
-Class codeInspector.env.Config [ CompileAfter = codeInspector.api.Service ]
+Class codeInspector.env.Config Extends %RegisteredObject
 {
 
 ClassMethod CreateWebApplication(pFromNS = "")
 {
- 
+    zn "%SYS" 
     Set application = "/codeinspector"
     Set ret = $$$OK
     Set spec("AutheEnabled") = $$$AutheUnauthenticated
@@ -23,10 +23,13 @@ ClassMethod CreateWebApplication(pFromNS = "")
         Set ret = ##class(Security.Applications).Modify(application, .spec)
         Write !, "Web application """_application_""" has been updated.",!
     }
+    zn pFromNS
 }
 
 ClassMethod MapCodeInspector(pFromNS = "")
 {
+    zn "%SYS"
+
 	Set namespace = "%ALL"
 	Set package = "codeInspector"
     Do ##class(Config.Namespaces).Get(pFromNS, .installNSProps)
