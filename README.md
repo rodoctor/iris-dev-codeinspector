@@ -12,9 +12,9 @@ The motivation behind **CodeInspector** is to create a tool that is easy to impl
 
 ## Challenges Faced
 The Shift team is developing our own tools, as we haven't found any that fit our specific business needs. To address this demand, I created a tool that is flexible and easy to implement, allowing any team member to create new rules without complications.
+I faced some challenges using ZPM, largely due to my limited familiarity with the tool.
 
 ## Features
-
 - Analyzes and validates packages and classes based on predefined rules.
 - Processes specified packages and identifies relevant classes.
 - Applies custom validations while excluding marked packages and classes.
@@ -45,19 +45,19 @@ Navigate to the directory and run:
 $ docker-compose up -d
 ```
 
-## IPM
+### IPM
 Open IRIS installation with IPM client installed:
 ```bash
 USER>zpm "load /home/irisowner/dev"
 ```
 
-## Management portal: 
+### Management portal: 
 
 The management portal is available at: 
 [Management portal](http://localhost:9091/csp/sys/UtilHome.csp)
 
 
-## Rest API - CodeInspector Repost
+## Rest API - CodeInspector JSON Report
 
 ### API Parameters
 
@@ -91,13 +91,13 @@ classDiagram
 `codeInspector.rules.[package].[className]` --|> `codeInspector.rules.BaseRule`
 ```
 
-- The new rule must extend the framework.codeInspector.rules.BaseRule class.
+- The new rule must extend the codeInspector.rules.BaseRule class.
 - The new rule should override the Execute() method.
 - The method receives three parameters:
-    - pMethodContent - Stream containing the content of the method to be validated.
-    - pIdMethod - A combination of the class name and the method name that represents the content of the stream.
-    - ByRef pArrayErrors - Holds all the statuses from previous validations. If necessary to increment, the method IncrementStatusError() should be used.
-- The IncrementStatusError method should be implemented as shown in the example below:
+    - **pMethodContent** - Stream containing the content of the method to be validated.
+    - **pIdMethod** - A combination of the class name and the method name that represents the content of the stream.
+    - **ByRef pArrayErrors** - Holds all the statuses from previous validations. If necessary to increment, the method IncrementStatusError() should be used.
+- The *IncrementStatusError* method should be implemented as shown in the example below:
 
 ```objectscript
 Set type = "Interdependency"
@@ -113,3 +113,9 @@ Do ..IncrementStatusError(.pArrayErrors,pIdMethod,type,pMethodContent,errorDescr
 
 ## Collaboration 
 We welcome any and all contributions! Feel free to fork the repository, make improvements or suggest changes, and submit a Pull Request. Every contribution is appreciated, and we look forward to collaborating with you.
+
+## Future Ideas
+- Enhance the project's configuration process to simplify installation and setup, making it more user-friendly for new users.
+- Implement a graphical user interface (GUI) for easier rule management, configuration, and report visualization.
+- Add integration with popular CI/CD tools for automated code inspection during the development pipeline.
+- Expand the reporting features to include visualizations and metrics on code quality over time.
