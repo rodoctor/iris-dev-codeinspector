@@ -71,7 +71,7 @@ The API is available at [http://localhost:9091/codeinspector/](http://localhost:
 You can find an export of the Postman Collection for testing the available API in the `collectionPostman` folder of this project.
 Import ![CodeInspector.postman_collection.json](collectionPostman/CodeInspector.postman_collection.json) into Postman to run tests.
 
-![Postman Test](Postman.gif)
+![Postman Test](images/Postman.gif)
 
 
 ## Creating New Rules
