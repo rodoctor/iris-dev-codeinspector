@@ -79,13 +79,13 @@ Import ![CodeInspector.postman_collection.json](collectionPostman/CodeInspector.
 ```mermaid
 
 classDiagram
-  class `codeInspector.rule.rules.BaseRule` {
+  class `codeInspector.rules.BaseRule` {
     +Execute() : void
     +IncrementStatusError() : void
   }
   
   class `codeInspector.rules.[package].[className]` {
-     +Executar() : void
+     +Execute() : void
   }
 
 `codeInspector.rules.[package].[className]` --|> `codeInspector.rules.BaseRule`
@@ -112,7 +112,7 @@ Do ..IncrementStatusError(.pArrayErrors,pIdMethod,type,pMethodContent,errorDescr
 - IRIS for Health Community Edition in Docker
 
 ## Collaboration 
-We welcome any and all contributions! Feel free to fork the repository, make improvements or suggest changes, and submit a Pull Request. Every contribution is appreciated, and we look forward to collaborating with you.
+I appreciate any and all contributions! Feel free to fork the repository, make improvements or suggest changes, and submit a pull request.
 
 ## Future Ideas
 - Enhance the project's configuration process to simplify installation and setup, making it more user-friendly for new users.
