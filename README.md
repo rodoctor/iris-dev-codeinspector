@@ -48,7 +48,7 @@ $ docker-compose up -d
 ### IPM
 Open IRIS installation with IPM client installed:
 ```bash
-USER>zpm "load /home/irisowner/dev"
+IRISAPP>zpm "install codeinspector"
 ```
 
 ### Management portal: 
