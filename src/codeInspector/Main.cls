@@ -14,7 +14,7 @@ Class codeInspector.Main Extends codeInspector.core.Base
 /// </ul>
 /// </params>
 /// <example>
-/// Do ##class(codeInspector.Main).Execute("package.A,package.B","package.C",1)
+/// Do ##class(codeInspector.Main).Execute("package.A,package.B","package.C")
 /// </example>
 ClassMethod Execute(pPackageList As %String = "", pIgnoredPackageList As %String = "", pReturnJson As %Boolean = 0)
 {
