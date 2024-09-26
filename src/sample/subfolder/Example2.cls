@@ -1,4 +1,4 @@
-Class sample.Example Extends %RegisteredObject
+Class sample.subfolder.Example2 Extends %RegisteredObject
 {
 
 Method MethodExample1() As %Status

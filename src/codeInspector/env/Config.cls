@@ -5,7 +5,8 @@ ClassMethod CreateWebApplication(pFromNS = "")
 {
     zn "%SYS" 
     Set application = "/codeinspector"
-    Set ret = $$$OK
+    Set Status = $$$OK
+    
     Set spec("AutheEnabled") = $$$AutheUnauthenticated
     Set spec("NameSpace") = pFromNS
     Set spec("Description") = "Api CodeInspector Rest Installer"
