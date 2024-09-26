@@ -3,7 +3,7 @@ Class codeInspector.core.Base [ CompileAfter = (codeInspector.utl.XData, codeIns
 
 ClassMethod IgnoreClass(pClassName, pIgnoredPackageList) As %Boolean [ Internal ]
 {
-	Set return = 0
+	Set shouldIgnore  = 0
 	Set list = $LISTFROMSTRING(pIgnoredPackageList)
 
 	For index=1:1:$LISTLENGTH(list)
@@ -12,12 +12,12 @@ ClassMethod IgnoreClass(pClassName, pIgnoredPackageList) As %Boolean [ Internal 
 		
 		If $FIND(pClassName,ignorePackage)
 		{
-			Set return = 1
-			Return return
+			Set shouldIgnore  = 1
+			Return shouldIgnore 
 		}
 		
 	}
-	Quit return
+	Quit shouldIgnore 
 }
 
 ClassMethod ClassValidator(pClassName, ByRef pRulesStatus) [ Internal ]
@@ -37,17 +37,16 @@ ClassMethod MethodValidator(pIdMethod, ByRef pRulesStatus) [ Internal ]
 {
 	#DIM streamMethod As %Stream.TmpCharacter
 	
-	Set IdMethod = pIdMethod
-	Set dictionaryMethod = ##Class(%Dictionary.CompiledMethod).%OpenId(IdMethod)
+	Set dictionaryMethod = ##Class(%Dictionary.CompiledMethod).%OpenId(pIdMethod)
 	Set streamMethod = dictionaryMethod.Implementation
 	
-	Set rsRegras = ##class(codeInspector.data.SQL).SearchRules()
-	While rsRegras.%Next()
+	Set rsRules = ##class(codeInspector.data.SQL).SearchRules()
+	While rsRules.%Next()
 	{
 		Do streamMethod.Rewind()
 		
-		Set classId = rsRegras.ClassId
-		Do $CLASSMETHOD(classId,"Execute",streamMethod,IdMethod,.pRulesStatus)
+		Set classId = rsRules.ClassId
+		Do $CLASSMETHOD(classId,"Execute",streamMethod,pIdMethod,.pRulesStatus)
 	}
 }
 

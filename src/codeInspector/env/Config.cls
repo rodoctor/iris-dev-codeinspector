@@ -15,12 +15,12 @@ ClassMethod CreateWebApplication(pFromNS = "")
 
     If ('##class(Security.Applications).Exists(application)) {
         Write !!, "Creating the web application """_application_""""
-        Set ret = ##class(Security.Applications).Create(application, .spec)
+        $$$THROWONERROR(Status,##class(Security.Applications).Create(application, .spec))
         Write !, "Web application """_application_""" has been created.",!
     }
     Else {
         Write !!, "Updating the web application """_application_""""
-        Set ret = ##class(Security.Applications).Modify(application, .spec)
+        $$$THROWONERROR(Status,##class(Security.Applications).Modify(application, .spec))
         Write !, "Web application """_application_""" has been updated.",!
     }
     zn pFromNS

@@ -9,7 +9,6 @@
       <Packaging>module</Packaging>
       <Resource Name="codeInspector.PKG"/>
       <Resource Name="sample.PKG"/>
-      <CSPApplication CookiePath="/codeinspector/" DefaultTimeout="900" Description="Api CodeInspector Rest Installer" DispatchClass="codeInspector.api.Service" MatchRoles=":%All" PasswordAuthEnabled="1" Recurse="1" ServeFiles="1" ServeFilesTimeout="3600" UnauthenticatedEnabled="0" Url="/codeinspector" UseSessionCookie="2"/>
       <SourcesRoot>src</SourcesRoot>
       <Invoke Class="%SYSTEM.OBJ" Method="LoadDir">
          <Arg>/home/irisowner/dev/src</Arg>
