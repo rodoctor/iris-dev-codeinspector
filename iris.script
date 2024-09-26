@@ -18,13 +18,6 @@
     zn "IRISAPP"
 
     Do $SYSTEM.OBJ.LoadDir("/home/irisowner/dev/src","ck",,1)
-    Do $SYSTEM.OBJ.LoadDir("/home/irisowner/dev/src","ck",,1)
-
-    // Create /_vscode web app to support intersystems-community.testingmanager VS Code extension
-    zpm "install vscode-per-namespace-settings"
-
-    // Configure %UnitTest in IRISAPP to suit the VS Code extension
-    set ^UnitTestRoot="/usr/irissys/.vscode/IRISAPP/UnitTestRoot"
 
     zpm "load /home/irisowner/dev/ -v":1:1
     halt

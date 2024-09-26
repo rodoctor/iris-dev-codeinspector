@@ -53,12 +53,16 @@ Method MethodExample1() As %Status
     Write "Line 48"
     Write "Line 49"
     Write "Line 50"
+
+    Quit $$$OK
 }
 
 Method MethodExample2() As %Status
 {
     Set value1 = ##class(example.class).%New()
     Set value2 = ##class(example.class2).%New()
+
+    Quit $$$OK
 }
 
 }
